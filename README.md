@@ -8,7 +8,9 @@ Very experimental! Many features missing, and generally feels very fragile (not 
 One commom problem is that relative paths (using $JOB variables, for instance) don't seem to work. Try to use absolute paths whenever possible. Those paths can be converted to "asset::" style paths in the generated mojo3d scene using the "Convert paths to asset paths" option.
 
 ## Installation
-The exporter consists of a single Python script. You can launch it inside Houdini in any way you prefer, but the recommended is copying/pasting the script into a Shelf tool. When you create a new shelf tool, simply go to the "Script" tab and add these lines:
+The exporter consists of a single Python script. You can launch it inside Houdini in any way you prefer, as long as you call the export() function from the script.
+
+The recommended is copying/pasting the script into a Shelf tool. When you create a new shelf tool, simply go to the "Script" tab and add these lines:
 ```
 execfile("/Path/mojo3d_export.py")
 export()
@@ -17,7 +19,7 @@ Replace "Path" with the path to the script file in your filesystem.
 
 ## Houdini nodes supported
 
-Basic attibutes:
+Basic attributes:
 - Name.
 - Material (multiple materials per object not supported yet).
 - Local transform matrix.
@@ -36,6 +38,10 @@ Primitive geometry:
  
  Camera:
  - Near, far and FOV supported
+ 
+ Materials:
+ - Only Principled shader materials supported.
+ - Color, Roughness, Metallic, Emissive and Normal channels are supported.
  
  Models:
  - File nodes are supported in two ways:
