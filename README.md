@@ -50,4 +50,8 @@ Primitive geometry:
     - When writing, the written file is loaded in mojo3d without hierarchy ("Model.Load").
     - If loading, any "sibling" nodes with file nodes are ignored, and the model is loaded with hierarchy ("Model.LoadBoned").
  - Materials can be overriden if the "Collapse hierarchy on load" option is On.
+ 
+ Instancing:
+ - Redundant loads (textures or models) are consolidated into a single load in the mojo3d side.
+ - ObjMerge nodes are supported, and will create model instances. Must point to the geometry node, not any child node inside it.
   
