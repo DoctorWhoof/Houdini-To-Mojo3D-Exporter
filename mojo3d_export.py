@@ -1,8 +1,7 @@
 
 # To do:
 # Auto-convert maps to pbr material if color texture path contains ".pbr"
-# Auto generate default material, if necessary
-# Convert file paths to asset paths
+# Multiple materials per model (maybe using multiple material nodes inside geo?)
 
 #----------------------------------------------------------------------------
 
@@ -291,8 +290,16 @@ def getmaterial(n):
                         else:
                                 return mojonode.byHounode[ matnode ].uniqueID
                 else:
-                        hou.ui.displayMessage( "Mojo Exporter Warning: Entity " + n.name() + " has no material!")
-                        return None
+                        # hou.ui.displayMessage( "Mojo Exporter Warning: Entity " + n.name() + " has no material!")
+                        if "DefaultMaterial" in assetPaths.keys():
+                                return assetPaths["DefaultMaterial"].uniqueID
+                        else:
+                                args = [ [0.7, 0.7, 0.7, 1.0], 0.0, 0.5 ]
+                                argtypes = ["std.graphics.Color","Float","Float"]
+                                mat = mojonode( None, "mojo3d.PbrMaterial.New", "mojo3d.PbrMaterial", args, argtypes, "Void", 2 )
+                                assetPaths["DefaultMaterial"] = mat
+                                return mat.uniqueID
+                        # return None
                 
 
 def getmesh(n):
@@ -393,7 +400,7 @@ def convertToAssetPath(originalPath):
         blocks = originalPath.split("/")
         last = len(blocks)-1
         pbr=""
-        # if blocks[last-1].endswith(".pbr"): pbr = blocks[last-1]+"/"
+        if blocks[last-1].endswith(".pbr"): pbr = blocks[last-1]+"/"
         return "asset::"+pbr+blocks[last]
 
 
@@ -412,9 +419,9 @@ def export():
         global convertToAssetPaths
         global collapseHierachyOnLoad
 
-        path = "/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_examples/assets/scenes/new_export.json"
+        # path = "/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_examples/assets/scenes/new_export.json"
         # path = hou.pwd().parm("path").eval()
-        # path = hou.ui.selectFile( "$JOB", "Choose file to export to" )
+        path = hou.ui.selectFile( "$JOB", "Choose file to export to" )
 
         choices = hou.ui.selectFromList(
                 ("Convert Savers to .glb",
