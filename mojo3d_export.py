@@ -2,6 +2,7 @@
 # To do:
 # Auto-convert maps to pbr material if color texture path contains ".pbr"
 # Multiple materials per model (maybe using multiple material nodes inside geo?)
+# Object merge to an object in the same hierarchy causes endless loop in the mojo3d side, needs warning
 
 #----------------------------------------------------------------------------
 
@@ -17,9 +18,9 @@ assetPaths = dict()     #kind of a pain, Houdini has no texture nodes.... key:as
 
 root = hou.node("/obj")
 
-convertLoadersToGlb = True
-convertSaversToGlb = True
-convertAssetPaths = True
+convertLoadersToGlb = False
+convertSaversToGlb = False
+convertAssetPaths = False
 
 #-------------------------------- Classes ----------------------------------
 
@@ -429,34 +430,23 @@ def export():
                 "Collapse Hierarchy on Load" ),
                 (1,2) )
 
-        if 0 in choices:
-                convertSaversToGlb=True
-        else:
-                convertSaversToGlb=False
-
-        if 1 in choices:
-                convertToLoadersToGlb=True
-        else:
-                convertToLoadersToGlb=False
-
-        if 2 in choices:
-                convertToAssetPaths=True
-        else:
-                convertToAssetPaths=False
-
-        if 3 in choices:
-                collapseHierachyOnLoad=True
-        else:
-                collapseHierachyOnLoad=False
-
+        if 0 in choices: convertSaversToGlb=True
+        if 1 in choices: convertLoadersToGlb=True
+        if 2 in choices: convertToAssetPaths=True
+        if 3 in choices: collapseHierachyOnLoad=True
 
         # clear shell
         # print "\n" * 5000
         print choices
         print "\nExporting Scene to Json file: ", path, "\n"
 
-        #Create scene node
+        #Create scene node with default state
         scene = mojonode( root, "mojo3d.Scene.New", "mojo3d.Scene", [True], ["Bool"], "Void", 0 )
+        scene.json["state"]["EnvColor"] = [0,0,0,1]
+        scene.json["state"]["EnvTexture"] = None
+        scene.json["state"]["SkyTexture"] = None
+        scene.json["state"]["AmbientLight"] = [0,0,0,1]
+        scene.json["state"]["ClearColor"] = [0,0,0,1]
 
         #find entities, set priorities
         for c in root.children():
