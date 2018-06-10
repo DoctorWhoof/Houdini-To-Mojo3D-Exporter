@@ -20,7 +20,6 @@
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
             },
             "id":"@1",
-            "state":{},
             "type":"mojo.graphics.Texture"
         },
         {
@@ -31,7 +30,6 @@
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
             },
             "id":"@2",
-            "state":{},
             "type":"mojo.graphics.Texture"
         },
         {
@@ -42,7 +40,6 @@
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
             },
             "id":"@3",
-            "state":{},
             "type":"mojo.graphics.Texture"
         },
         {
@@ -53,7 +50,6 @@
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
             },
             "id":"@4",
-            "state":{},
             "type":"mojo.graphics.Texture"
         },
         {
@@ -64,7 +60,6 @@
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
             },
             "id":"@5",
-            "state":{},
             "type":"mojo.graphics.Texture"
         },
         {
@@ -75,7 +70,6 @@
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
             },
             "id":"@6",
-            "state":{},
             "type":"mojo.graphics.Texture"
         },
         {
@@ -88,7 +82,6 @@
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@7",
-            "state":{},
             "type":"mojo3d.PbrMaterial"
         },
         {
@@ -101,7 +94,6 @@
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@8",
-            "state":{},
             "type":"mojo3d.PbrMaterial"
         },
         {
@@ -114,7 +106,6 @@
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@9",
-            "state":{},
             "type":"mojo3d.PbrMaterial"
         },
         {
@@ -127,7 +118,6 @@
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@10",
-            "state":{},
             "type":"mojo3d.PbrMaterial"
         },
         {
@@ -140,7 +130,6 @@
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@11",
-            "state":{},
             "type":"mojo3d.PbrMaterial"
         },
         {
@@ -171,7 +160,6 @@
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@13",
-            "state":{},
             "type":"mojo3d.PbrMaterial"
         },
         {
@@ -181,7 +169,6 @@
                 "type":"mojo3d.Mesh(Float,Int,Int)"
             },
             "id":"@14",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -191,7 +178,6 @@
                 "type":"mojo3d.Mesh(Float,Int,Int)"
             },
             "id":"@15",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -201,7 +187,6 @@
                 "type":"mojo3d.Mesh(Float,Float,std.geom.Axis,Int)"
             },
             "id":"@16",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -211,7 +196,6 @@
                 "type":"mojo3d.Mesh(Float,Float,Int,Int)"
             },
             "id":"@17",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -225,7 +209,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@18",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -235,7 +218,6 @@
                 "type":"mojo3d.Mesh(Float,Float,std.geom.Axis,Int)"
             },
             "id":"@19",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -249,7 +231,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@20",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -263,7 +244,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@21",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -277,7 +257,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@22",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -291,7 +270,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@23",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -305,7 +283,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@24",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -319,7 +296,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@25",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -329,7 +305,6 @@
                 "type":"mojo3d.Mesh(Float,Int,Int)"
             },
             "id":"@26",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -343,7 +318,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@27",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -357,7 +331,6 @@
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
             "id":"@28",
-            "state":{},
             "type":"mojo3d.Mesh"
         },
         {
@@ -370,7 +343,7 @@
             "state":{
                 "FOV":36.82009835741053,
                 "Far":100.0,
-                "LocalMatrix":[0.6977084757693368,3.3698541011539817e-06,-0.716381799621035,0.29068808711895744,0.9139727476467145,0.2831152637464754,0.654754395820868,-0.4057755741142621,0.6376855530788594,-15.666273691016437,8.188402221783464,-16.949638815029473],
+                "LocalMatrix":[0.6075956112180607,2.895817859144272e-06,-0.794246544355193,0.24190887554785268,0.9524871848879424,0.18506285028448152,0.756510191048161,-0.30457866408508844,0.5787263327553172,-21.207775631930563,7.727620829072636,-15.974842502209906],
                 "Name":"Camera",
                 "Near":0.1
             },

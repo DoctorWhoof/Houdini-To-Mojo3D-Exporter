@@ -477,6 +477,8 @@ def export():
         #Add instances to root json dictionary
         jsondict["instances"] = []
         for n in orderedNodes:
+                if "state" in n.json.keys():
+                        if not n.json["state"]: n.json.pop("state")
                 jsondict["instances"].append( n.json )
 
         #Json to text
