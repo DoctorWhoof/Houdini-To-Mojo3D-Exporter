@@ -1,6 +1,8 @@
 # Houdini-To-Mojo3D-Exporter
 A Python exporter that converts a Simple Houdini Scene to a .mojo3d file.
 
+<img src="./screenshots/houdini_test.png" width="2036" />
+
 ## Warning!
 
 Very experimental! Many features missing, and generally feels very fragile (not a lot of safety checks). Expect the compiled Monkey2 code loading the generated files to crash a lot. Make sure you have Debug build on, and let me know which problems you run into so that I can improve it.
