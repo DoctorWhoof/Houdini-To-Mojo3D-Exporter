@@ -21,7 +21,7 @@ Class MyWindow Extends Window
 	Field _scene:Scene
 	Field _camera:Camera
 	
-	Method New( title:String="Simple mojo3d app",width:Int=640,height:Int=480,flags:WindowFlags=WindowFlags.Resizable )
+	Method New( title:String="Simple mojo3d app",width:Int=640,height:Int=480,flags:WindowFlags=WindowFlags.Resizable | WindowFlags.HighDPI )
 		Super.New( title,width,height,flags )
 	End
 	
