@@ -12,7 +12,7 @@ One commom problem is that relative paths (using $JOB variables, for instance) d
 ## Installation
 The exporter consists of a single Python script. You can launch it inside Houdini in any way you prefer, as long as you call the export() function from the script.
 
-The recommended way is through a shelf tool. When you create a new shelf tool, simply go to the "Script" tab and add these lines:
+The recommended way is through a shelf tool. When you create a new shelf tool, simply go to its "Script" tab and add these lines:
 ```
 execfile("/Path/mojo3d_export.py")
 export()
