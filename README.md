@@ -53,5 +53,5 @@ Primitive geometry:
  
  Instancing:
  - Redundant loads (textures or models) are consolidated into a single load in the mojo3d side.
- - ObjMerge nodes are supported, and will create model instances. Must point to the geometry node, not any child node inside it.
+ - Object Merge nodes are supported, and will create model instances. Must point to the "base" geometry node, not any child node inside it.
   
