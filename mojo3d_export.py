@@ -10,16 +10,15 @@
 import json
 import math
 
-jsondict = dict()       #main json file
-orderedNodes = []       #final list, contains one json dictionary per valid node in the correct order
-
-uniqueIDCounter = -1
-
-root = hou.node("/obj")
-
 convertLoadersToGlb = False
 convertSaversToGlb = False
 convertAssetPaths = False
+
+jsondict = dict()       #main json file
+orderedNodes = []       #final list, contains one json dictionary per valid node in the correct order
+uniqueIDCounter = -1    #provides a global index for references (i.e. textures) before mojoID numbers are assigned
+
+root = hou.node("/obj")
 
 #-------------------------------- Classes ----------------------------------
 
@@ -28,8 +27,6 @@ class mojonode:
         byPriority = dict()
         byReference = dict()    #Keys: all path references, to be replaced by mojo ids, Values:the correspondent mojonode
         byAssetPath = dict()    #kind of a pain, Houdini has no texture nodes.... key:asset path, value:mojonode
-
-        uniqueIDCounter = 0                    #provides an index for references (i.e. textures) before mojoID numbers are assigned
 
         def __init__( self, node, decl, decltype, args, argtypes, returntype, priority ):
                 global uniqueIDCounter
