@@ -25,6 +25,12 @@ Basic attributes:
 - Name.
 - Material (multiple materials per object not supported yet).
 - Local transform matrix.
+- Object Node display flag, object is not exported if off.
+- SOP node bypass flag, object is not exported if on.
+
+Subnetworks:
+- Are exported as a Pivot entity above the children objects in the hierarchy.
+- It is recommended that subnetworks don't have a transform parent of their own, and only live at "/obj"
 
 Primitive geometry:
  - Box.
@@ -49,7 +55,7 @@ Primitive geometry:
  Models:
  - File nodes are supported in two ways:
     - When writing, the written file is loaded in mojo3d without hierarchy ("Model.Load").
-    - If loading, any "sibling" nodes with file nodes are ignored, and the model is loaded with hierarchy ("Model.LoadBoned").
+    - If loading, any "sibling" nodes with file nodes are ignored, and the model is loaded with hierarchy ("Model.LoadBoned"). This is due to the way Houdini loads .fbx files, creating a file node for each object in the fbx scene, which would cause mojo3d to load the same model multiple times.
  - Materials can be overriden if the "Collapse hierarchy on load" option is On.
  
  Instancing:
