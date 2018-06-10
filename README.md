@@ -1,7 +1,7 @@
 # Houdini-To-Mojo3D-Exporter
 A Python exporter that converts a Simple Houdini Scene to a .mojo3d file.
 
-<img src="./screenshots/houdini_test.png" width="2036" />
+<img src="./screenshots/houdini_test.png" width="2064" />
 
 ## Warning!
 

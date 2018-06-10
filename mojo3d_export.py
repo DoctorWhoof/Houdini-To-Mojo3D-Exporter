@@ -3,6 +3,7 @@
 # Auto-convert maps to pbr material if color texture path contains ".pbr"
 # Multiple materials per model (maybe using multiple material nodes inside geo?)
 # Object merge to an object in the same hierarchy causes endless loop in the mojo3d side, needs warning
+# Explore massive instancing (CopyToPoints, etc.). May need custom components in mojo3d.
 
 #----------------------------------------------------------------------------
 
@@ -13,8 +14,6 @@ jsondict = dict()       #main json file
 orderedNodes = []       #final list, contains one json dictionary per valid node in the correct order
 
 uniqueIDCounter = -1
-references = dict()     #Keys: all path references, to be replaced by mojo ids, Values:the correspondent mojonode
-assetPaths = dict()     #kind of a pain, Houdini has no texture nodes.... key:asset path, value:mojonode
 
 root = hou.node("/obj")
 
@@ -27,6 +26,9 @@ convertAssetPaths = False
 class mojonode:
         byHounode = dict()
         byPriority = dict()
+        byReference = dict()    #Keys: all path references, to be replaced by mojo ids, Values:the correspondent mojonode
+        byAssetPath = dict()    #kind of a pain, Houdini has no texture nodes.... key:asset path, value:mojonode
+
         uniqueIDCounter = 0                    #provides an index for references (i.e. textures) before mojoID numbers are assigned
 
         def __init__( self, node, decl, decltype, args, argtypes, returntype, priority ):
@@ -39,7 +41,7 @@ class mojonode:
 
                 uniqueIDCounter += 1
                 self.uniqueID = "uniqueID<" + str(uniqueIDCounter) + ">"
-                references[self.uniqueID] = self
+                self.byReference[self.uniqueID] = self
 
                 if not priority in self.byPriority.keys(): self.byPriority[priority] = []
                 self.byPriority[priority].append( self )
@@ -139,9 +141,9 @@ def getentity( n, transformParent = None ):
                         modelpath = mpath[0]
                         filemode = mpath[1]
                 if modelpath:
-                        if modelpath in assetPaths.keys():
+                        if modelpath in mojonode.byAssetPath.keys():
                                 #reference to file already exists, instance it
-                                model = assetPaths[modelpath]
+                                model = mojonode.byAssetPath[modelpath]
                                 entity = mojonode( n, "mojo3d.Entity.Copy", "mojo3d.Entity", [parent], ["mojo3d.Entity"], "mojo3d.Entity", 5 )
                                 entity.json["ctor"]["inst"] = model.uniqueID
                                 assignMaterial(n)
@@ -150,7 +152,7 @@ def getentity( n, transformParent = None ):
                                         entity = mojonode( n, "mojo3d.Model.LoadBoned", "mojo3d.Model", [modelpath], ["String"], "mojo3d.Model", 5 )
                                 else:
                                         entity = mojonode( n, "mojo3d.Model.Load", "mojo3d.Model", [modelpath], ["String"], "mojo3d.Model", 5 )
-                                assetPaths[modelpath] = entity
+                                mojonode.byAssetPath[modelpath] = entity
                                 mojonode.byHounode[n].json["state"]["Parent"] = parent
                                 assignMaterial(n)
 
@@ -292,13 +294,13 @@ def getmaterial(n):
                                 return mojonode.byHounode[ matnode ].uniqueID
                 else:
                         # hou.ui.displayMessage( "Mojo Exporter Warning: Entity " + n.name() + " has no material!")
-                        if "DefaultMaterial" in assetPaths.keys():
-                                return assetPaths["DefaultMaterial"].uniqueID
+                        if "DefaultMaterial" in mojonode.byAssetPath.keys():
+                                return mojonode.byAssetPath["DefaultMaterial"].uniqueID
                         else:
                                 args = [ [0.7, 0.7, 0.7, 1.0], 0.0, 0.5 ]
                                 argtypes = ["std.graphics.Color","Float","Float"]
                                 mat = mojonode( None, "mojo3d.PbrMaterial.New", "mojo3d.PbrMaterial", args, argtypes, "Void", 2 )
-                                assetPaths["DefaultMaterial"] = mat
+                                mojonode.byAssetPath["DefaultMaterial"] = mat
                                 return mat.uniqueID
                         # return None
                 
@@ -345,17 +347,17 @@ def getmesh(n):
 
 def gettexture(n,pname, flags=12):
         texpath = n.parm(pname).eval()
-        if not texpath in assetPaths.keys():
+        if not texpath in mojonode.byAssetPath.keys():
                 if convertAssetPaths:
                         texpath=convertToAssetPath(texpath)
                 args = [ texpath, flags, False ]
                 argtypes = ["String", "mojo.graphics.TextureFlags", "Bool" ]
                 texture = mojonode( None, "mojo3d.Scene.LoadTexture", "mojo.graphics.Texture", args, argtypes, "mojo.graphics.Texture", 1 )
                 texture.json["ctor"]["inst"] = "@0"
-                assetPaths[texpath] = texture
+                mojonode.byAssetPath[texpath] = texture
                 return texture.uniqueID
         else:
-                return assetPaths[texpath].uniqueID
+                return mojonode.byAssetPath[texpath].uniqueID
 
 
 
@@ -475,8 +477,8 @@ def export():
         text = compact( text )
 
         #Convert references to paths to instance ids
-        for r in references.keys():
-                n = references[r]
+        for r in mojonode.byReference.keys():
+                n = mojonode.byReference[r]
                 text = text.replace( r, n.mojoID )
 
         #Finish up
