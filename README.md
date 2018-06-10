@@ -25,6 +25,7 @@ Basic attributes:
 - Name.
 - Material (multiple materials per object not supported yet).
 - Local transform matrix.
+- Constant vertex colors. Simply add a SOP color node to determine a color for all vertices.
 - Object Node display flag, object is not exported if off.
 - SOP node bypass flag, object is not exported if on.
 
