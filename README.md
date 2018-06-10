@@ -42,6 +42,7 @@ Primitive geometry:
  - Near, far and FOV supported
  
  Materials:
+ - Actual SOP material nodes aren't supported yet. Instead, assign materials at the object level.
  - Only Principled shader materials supported.
  - Color, Roughness, Metallic, Emissive and Normal channels are supported.
  
