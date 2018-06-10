@@ -419,7 +419,6 @@ def export():
         global convertToAssetPaths
         global collapseHierachyOnLoad
 
-        # path = "/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_examples/assets/scenes/new_export.json"
         # path = hou.pwd().parm("path").eval()
         path = hou.ui.selectFile( "$JOB", "Choose file to export to" )
 
