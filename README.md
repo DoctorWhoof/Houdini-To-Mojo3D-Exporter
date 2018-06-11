@@ -1,5 +1,7 @@
 # Houdini-To-Mojo3D-Exporter
-A Python exporter that converts a Simple Houdini Scene to a .mojo3d file. Mojo3D is a module that ships with the Monkey2 Programming Language, which has the right balance between simplicity, out-of-the-box functionality and power. It features Physically Based shaders, GLTF support and a simple component system.
+A Python exporter that converts a Simple Houdini Scene to a .mojo3d file. Mojo3D is a module that ships with the Monkey2 Programming Language. It features Physically Based shaders, GLTF 2.0 support and a simple component system.
+
+Monkey2 has the right balance between simplicity, out-of-the-box functionality and power. It translates itself to C++ code and then compiles to binary code that runs on many platforms, including Desktop, Mobile and Web.
 
 http://monkeycoder.co.nz
 
