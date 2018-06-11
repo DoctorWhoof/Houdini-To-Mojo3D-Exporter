@@ -1,4 +1,4 @@
-# Houdini-To-Mojo3D-Exporter
+# Houdini To Mojo3D Exporter
 A Python exporter that converts a Simple Houdini Scene to a .mojo3d file. Mojo3D is a module that ships with the Monkey2 Programming Language. It features Physically Based shaders, GLTF 2.0 support and a simple component system.
 
 Monkey2 has the right balance between simplicity, out-of-the-box functionality and power. It translates itself to C++ code and then compiles to binary code that runs on many platforms, including Desktop, Mobile and Web.
@@ -62,7 +62,7 @@ Primitive geometry:
  Models:
  - File nodes are supported in two ways:
     - When writing, the written file is loaded in mojo3d without hierarchy ("Model.Load").
-    - If loading, any "sibling" nodes with file nodes are ignored, and the model is loaded with hierarchy ("Model.LoadBoned"). This is due to the way Houdini loads .fbx files, creating a file node for each object in the fbx scene, which would cause mojo3d to load the same model multiple times.
+    - If loading, any extra "sibling" file nodes are ignored, and the model is loaded with hierarchy ("Model.LoadBoned"). This is due to the way Houdini loads .fbx files, creating a file node for each object in the fbx scene, which would cause mojo3d to load the same model multiple times.
  - Materials can be overriden if the "Collapse hierarchy on load" option is On.
  
  Instancing:
