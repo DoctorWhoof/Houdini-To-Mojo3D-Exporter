@@ -1,5 +1,5 @@
 'Houdini scene to mojo3d demostration
-'Try changing the scene in houdini, re-exporting it and hit space bar. The changes will reload, without the need to recompiling!
+'Try changing the scene in houdini, re-export it and hit space bar in this app. The changes will reload, without the need to recompile!
 'Make sure there's always a camera named "Camera", or you'll get a crash
 
 Namespace myapp3d
