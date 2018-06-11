@@ -1,11 +1,14 @@
 # Houdini-To-Mojo3D-Exporter
-A Python exporter that converts a Simple Houdini Scene to a .mojo3d file.
+A Python exporter that converts a Simple Houdini Scene to a .mojo3d file. Mojo3D is a module that ships with the Monkey2 Programming Language, which has the right balance between simplicity, out-of-the-box functionality and power. It features Physically Based shaders, GLTF support and a simple component system.
+
+http://monkeycoder.co.nz
+https://github.com/blitz-research/monkey2
 
 <img src="./screenshots/houdini_test.png" width="2064" />
 
 ## Warning!
 
-Very experimental! Many features missing, and generally feels very fragile (not a lot of safety checks). Expect the compiled Monkey2 code loading the generated files to crash a lot. Make sure you have Debug build on, and let me know which problems you run into so that I can improve it.
+Very experimental! Many features still missing, and generally feels very fragile (not a lot of safety checks). Expect the compiled Monkey2 code loading the generated files to crash a lot. Make sure you have Debug build on, and let me know which problems you run into so that I can improve it.
 
 One common problem is that relative paths (using $JOB variables, for instance) don't seem to work. Try to use absolute paths whenever possible. Those paths can be converted to "asset::" style paths in the generated mojo3d scene using the "Convert paths to asset paths" option.
 
