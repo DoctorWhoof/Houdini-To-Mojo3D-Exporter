@@ -34,7 +34,6 @@ Class MyWindow Extends Window
 	
 	Method OnCreateWindow() Override
 		ReloadScene()
-		Print "Scene reloaded"
 	End
 	
 	
@@ -42,7 +41,7 @@ Class MyWindow Extends Window
 		RequestRender()
 		_scene.Update()
 		_camera.Render( canvas )
-		canvas.DrawText( "FPS="+App.FPS,0,0 )
+		canvas.DrawText( "FPS="+App.FPS,5,5 )
 		canvas.DrawText( "Hit space bar to reload the scene - No need to recompile to see changes to the .mojo3d file!", 5, Height-5, 0, 1 )
 		
 		If Keyboard.KeyHit( Key.Space ) Then ReloadScene()
@@ -54,6 +53,7 @@ Class MyWindow Extends Window
 		_camera = Cast<Camera>(_scene.FindEntity("Camera") )
 		_camera.View = Self
 		_camera.AddComponent<FlyBehaviour>()
+		Print "Scene reloaded"
 	End
 	
 End
