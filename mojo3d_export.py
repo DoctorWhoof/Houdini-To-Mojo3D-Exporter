@@ -12,7 +12,8 @@ import math
 
 convertLoadersToGlb = False
 convertSaversToGlb = False
-convertAssetPaths = False
+convertToAssetPaths = False
+overrideMaterials = False
 
 jsondict = dict()       #main json file
 orderedNodes = []       #final list, contains one json dictionary per valid node in the correct order
@@ -46,6 +47,7 @@ class mojonode:
                 self.json["ctor"] ={"decl":decl,"args":args,"type": returntype+"("+listToString(argtypes)+")"}
                 self.json["type"] = decltype
                 self.json["state"] = dict()
+
 
 class flags:
         normal = 12
@@ -107,6 +109,7 @@ def mojomatrix( n ):
 
 def eval(n,p):
         return n.parm(p).eval()
+        
 
 #-------------------------------- Mojo Translators ----------------------------------
 
@@ -120,8 +123,8 @@ def buildtree( n, transformParent = None ):
 
 def getentity( n, transformParent = None ):
 
+        if n in mojonode.byHounode.keys(): return
         parent = getparent(n, transformParent)
-        # parent = getparent(n)
 
         if n.type().name() == ("subnet"):
                 entity = mojonode( n, "mojo3d.Pivot.New", "mojo3d.Pivot", [parent], ["mojo3d.Entity"], "Void", 4 )
@@ -143,7 +146,7 @@ def getentity( n, transformParent = None ):
                                 model = mojonode.byAssetPath[modelpath]
                                 entity = mojonode( n, "mojo3d.Entity.Copy", "mojo3d.Entity", [parent], ["mojo3d.Entity"], "mojo3d.Entity", 5 )
                                 entity.json["ctor"]["inst"] = model.uniqueID
-                                assignMaterial(n)
+                                if overrideMaterials: getAllMaterials(n)
                         else:
                                 if filemode == "read" and not collapseHierachyOnLoad:
                                         entity = mojonode( n, "mojo3d.Model.LoadBoned", "mojo3d.Model", [modelpath], ["String"], "mojo3d.Model", 5 )
@@ -151,17 +154,20 @@ def getentity( n, transformParent = None ):
                                         entity = mojonode( n, "mojo3d.Model.Load", "mojo3d.Model", [modelpath], ["String"], "mojo3d.Model", 5 )
                                 mojonode.byAssetPath[modelpath] = entity
                                 mojonode.byHounode[n].json["state"]["Parent"] = parent
-                                assignMaterial(n)
+                                if overrideMaterials: getAllMaterials(n)
 
 
                 elif n.type().name().startswith("geo"):
                         if n.children():
                                 mergeobj = getobjmerge(n)
                                 if mergeobj:
-                                        if mojonode.byHounode[mergeobj]:
-                                                entity = mojonode( n, "mojo3d.Entity.Copy", "mojo3d.Entity", [parent], ["mojo3d.Entity"], "mojo3d.Entity", 5 )
-                                                entity.json["ctor"]["inst"] = mojonode.byHounode[mergeobj].uniqueID
-                                                assignMaterial(n)
+                                        if parent:
+                                                if isChild(n,mergeobj):
+                                                        hou.ui.displayMessage( "Error: can't instance parent object. Will cause dependency loop!" )
+                                                        return
+                                        entity = mojonode( n, "mojo3d.Entity.Copy", "mojo3d.Entity", [parent], ["mojo3d.Entity"], "mojo3d.Entity", 6 )
+                                        entity.json["ctor"]["inst"] = mojonode.byHounode[mergeobj].uniqueID
+                                        getAllMaterials(n)
                                 else:
                                         args = [getmesh(n),getmaterial(n),parent]
                                         argtypes = ["mojo3d.Mesh","mojo3d.Material","mojo3d.Entity"]
@@ -188,7 +194,7 @@ def getentity( n, transformParent = None ):
                         if n.parm("shadow_type").eval() > 0: mojoshadow = 1
                         atten_type = n.parm("atten_type").eval()
                         mojorange = 100.0
-                        if atten_type == 0: mojorange = 10000.0                                                 #virtually no attentuation
+                        if atten_type == 0: mojorange = 100000.0                                                #virtually no attentuation
                         elif atten_type == 1: mojorange = n.parm("atten_dist").eval() * 25.0                    #not correct at all...
                         else: hou.ui.displayMessage( "Export Warning: unsupported light attentuation type" )    #inverse square, not implemented in mojo yet?
 
@@ -230,10 +236,23 @@ def getparent(n, transformParent=None):
                 parent = mojonode.byHounode[transformParent]
                 return parent.uniqueID
         if len(n.inputs()) == 1:
-                parent = mojonode.byHounode[n.inputs()[0]]
+                print n
+                pnode = n.inputs()[0]
+                if not pnode in mojonode.byHounode.keys(): getentity(pnode)
+                parent = mojonode.byHounode[pnode]
                 return parent.uniqueID
         else:
                 return None
+
+def isChild(n, parent):
+        if len(n.inputs()) >= 1:
+                i = n.inputs()[0]
+                if i == parent:
+                        return True
+                else:
+                        return isChild(i,parent)
+        else:
+                return False
 
 
 def getcolor(n,pname,alpha = 1.0, multiplier = 1.0):
@@ -250,14 +269,17 @@ def getcolornode(n):
                         return getcolor(c,"color")
         return None
 
+
 def getobjmerge(n):
         for c in n.children():
                 if c.isBypassed(): return None
                 if c.type().name() == "object_merge":
                         objpath = c.parm("objpath1").eval()
                         if objpath:
-                                print "################# ", objpath, "################# "
-                                return hou.node( objpath )
+                                hounode = hou.node( objpath )
+                                if not hounode in mojonode.byHounode.keys(): getentity(hounode)
+                                return hounode
+
         return None
 
 
@@ -281,11 +303,7 @@ def getmaterial(n):
                                 args = [ getcolor(matnode,"basecolor",1.0), matnode.parm("metallic").eval(), matnode.parm("rough").eval() ]
                                 argtypes = ["std.graphics.Color","Float","Float"]
                                 mat = mojonode( matnode, "mojo3d.PbrMaterial.New", "mojo3d.PbrMaterial", args, argtypes, "Void", 2 )
-                                if eval(n,"basecolor_texture"):mat.json["state"]["ColorTexture"] = gettexture(n,"basecolor_texture")
-                                if eval(n,"rough_texture"):mat.json["state"]["RoughnessTexture"] = gettexture(n,"rough_texture")
-                                if eval(n,"metallic_texture"):mat.json["state"]["MetalnessTexture"] = gettexture(n,"metallic_texture")
-                                if eval(n,"emitcolor_texture"):mat.json["state"]["EmissiveTexture"] = gettexture(n,"emitcolor_texture")
-                                if eval(n,"baseNormal_texture"):mat.json["state"]["NormalTexture"] = gettexture(n,"baseNormal_texture")
+                                getMaterialState(mat)
                                 return mat.uniqueID
                         else:
                                 return mojonode.byHounode[ matnode ].uniqueID
@@ -300,6 +318,43 @@ def getmaterial(n):
                                 mojonode.byAssetPath["DefaultMaterial"] = mat
                                 return mat.uniqueID
                         # return None
+
+
+def getMaterialState(matnode):
+        if eval(matnode.node,"basecolor_texture"):matnode.json["state"]["ColorTexture"] = gettexture(matnode.node,"basecolor_texture")
+        if eval(matnode.node,"rough_texture"):matnode.json["state"]["RoughnessTexture"] = gettexture(matnode.node,"rough_texture")
+        if eval(matnode.node,"metallic_texture"):matnode.json["state"]["MetalnessTexture"] = gettexture(matnode.node,"metallic_texture")
+        if eval(matnode.node,"emitcolor_texture"):matnode.json["state"]["EmissiveTexture"] = gettexture(matnode.node,"emitcolor_texture")
+        if eval(matnode.node,"baseNormal_texture"):matnode.json["state"]["NormalTexture"] = gettexture(matnode.node,"baseNormal_texture")
+
+
+def getAllMaterials(n):
+        matpaths = []
+        matnodes = []
+        mat_ids = []
+
+        if n.parm( "shop_materialpath"): matpaths.append( n.parm( "shop_materialpath").eval() )
+
+        for c in n.children():
+                if c.type().name() == "material":
+                        if c.isBypassed(): continue
+                        matpaths.append( c.parm("shop_materialpath1").eval() )
+
+        for m in matpaths:
+                if m != "": matnodes.append( hou.node( m ) )
+
+        for matnode in matnodes:
+                #Build material node, if doesn't exist already
+                if not matnode in mojonode.byHounode.keys():
+                        args = [ getcolor(matnode,"basecolor",1.0), matnode.parm("metallic").eval(), matnode.parm("rough").eval() ]
+                        argtypes = ["std.graphics.Color","Float","Float"]
+                        mat = mojonode( matnode, "mojo3d.PbrMaterial.New", "mojo3d.PbrMaterial", args, argtypes, "Void", 2 )
+                        getMaterialState(mat)
+                        mat_ids.append( mat.uniqueID )
+                else:
+                        mat_ids.append( mojonode.byHounode[ matnode ].uniqueID )
+
+        if mat_ids: mojonode.byHounode[n].json["state"]["Materials"] = mat_ids
                 
 
 def getmesh(n):
@@ -345,7 +400,7 @@ def getmesh(n):
 def gettexture(n,pname, flags=12):
         texpath = n.parm(pname).eval()
         if not texpath in mojonode.byAssetPath.keys():
-                if convertAssetPaths:
+                if convertToAssetPaths:
                         texpath=convertToAssetPath(texpath)
                 args = [ texpath, flags, False ]
                 argtypes = ["String", "mojo.graphics.TextureFlags", "Bool" ]
@@ -355,7 +410,6 @@ def gettexture(n,pname, flags=12):
                 return texture.uniqueID
         else:
                 return mojonode.byAssetPath[texpath].uniqueID
-
 
 
 def getcomponents():
@@ -369,11 +423,22 @@ def getModelPath(n, depth=0):
         if n.type().name().startswith("cam") or n.type().name().startswith("hlight") or n.type().name().startswith("ambient"):
                 return None
 
+        #search fbx output nodes
+        for f in hou.node("/out").children():
+                if f.type().name() == "filmboxfbx":
+                        if f.parm("startnode").eval() == n.path():
+                                file = f.parm("sopoutput").eval()
+                                filemode = "write"
+                                if convertSaversToGlb: file = file.replace(".fbx", ".glb")
+                                if convertToAssetPaths: file = convertToAssetPath(file)
+                                print file
+                                return file, filemode
+
+        #search for file nodes
         for c in n.children():
                 if c.type().name() == "file":
-                        file = c.parm("file").eval().split("#")
-                        if file:
-                                modelpath = file[0]
+                        modelpath = c.parm("file").eval().split("#")[0]
+                        if modelpath:
                                 if c.parm("filemode").eval() == 2:     #file mode is "write"
                                         filemode = "write"
                                         if convertSaversToGlb:
@@ -385,8 +450,15 @@ def getModelPath(n, depth=0):
                                                 modelpath = modelpath.replace(".fbx", ".glb")
                                                 modelpath = modelpath.replace(".obj", ".glb")
 
-                                if convertAssetPaths:
+                                if convertToAssetPaths:
                                         modelpath = convertToAssetPath(modelpath)
+                                break
+                elif c.type().name() == "rop_fbx":
+                        modelpath = c.parm("sopoutput").eval()
+                        if modelpath:
+                                filemode = "read"
+                                if convertLoadersToGlb: modelpath = modelpath.replace(".fbx", ".glb")
+                                if convertToAssetPaths: modelpath = convertToAssetPath(modelpath)
                                 break
                 else:
                         result = getModelPath(c,depth+1)
@@ -404,12 +476,6 @@ def convertToAssetPath(originalPath):
         return "asset::"+pbr+blocks[last]
 
 
-def assignMaterial(n):
-        if n.parm( "shop_materialpath"):
-                if n.parm( "shop_materialpath").eval():
-                        mojonode.byHounode[n].json["state"]["Materials"] = [getmaterial(n)]
-
-
 #-------------------------------- Exporter ----------------------------------
 
 
@@ -418,6 +484,7 @@ def export():
         global convertSaversToGlb
         global convertToAssetPaths
         global collapseHierachyOnLoad
+        global overrideMaterials
 
         # path = hou.pwd().parm("path").eval()
         path = hou.ui.selectFile( "$JOB", "Choose file to export to" )
@@ -426,13 +493,15 @@ def export():
                 ("Convert Savers to .glb",
                 "Convert Loaders to .glb ",
                 "Convert paths to asset paths",
-                "Collapse Hierarchy on Load" ),
-                (1,2) )
+                "Collapse Hierarchy on Load",
+                "Override Model Materials" ),
+                (1,2,4) )
 
         if 0 in choices: convertSaversToGlb=True
         if 1 in choices: convertLoadersToGlb=True
         if 2 in choices: convertToAssetPaths=True
         if 3 in choices: collapseHierachyOnLoad=True
+        if 4 in choices: overrideMaterials=True
 
         # clear shell
         # print "\n" * 5000

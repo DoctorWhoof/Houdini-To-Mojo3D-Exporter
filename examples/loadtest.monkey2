@@ -21,8 +21,10 @@ Using mojo3d..
 
 
 Class MyWindow Extends Window
-
-	Field _path := "asset::testscene.mojo3d"	
+	
+	'in oder to try hot-reloading, point this to your absolute local path, i.e. "/pathtofile/scenes/testscene.mojo3d"
+	Field _path := "asset::testscene.mojo3d"
+	
 	Field _scene:Scene
 	Field _camera:Camera
 
