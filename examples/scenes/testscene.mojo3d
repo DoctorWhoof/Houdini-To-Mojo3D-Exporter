@@ -5,17 +5,17 @@
             },
             "id":"@0",
             "state":{
-                "AmbientLight":[0.38145737946105673,0.3955915245023673,0.40914418193699753,1.0],
+                "AmbientLight":[0.38145738,0.39559152,0.40914418,1.00000000],
                 "ClearColor":[0,0,0,1],
-                "EnvColor":[1.3703509847201236,1.3703509847201236,1.3703509847201236,1.0],
+                "EnvColor":[1.37035098,1.37035098,1.37035098,1.00000000],
                 "EnvTexture":"@1",
-                "SkyTexture":"@1"
+                "SkyTexture":"@2"
             },
             "type":"mojo3d.Scene"
         },
         {
             "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/textures/white_cliff_top_4k.jpg",1036,false],
+                "args":["asset::white_cliff_top_4k.jpg",1036,false],
                 "decl":"mojo3d.Scene.LoadTexture",
                 "inst":"@0",
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
@@ -25,7 +25,7 @@
         },
         {
             "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/textures/m2tiles.pbr/color.jpg",12,false],
+                "args":["asset::white_cliff_top_4k.jpg",1036,false],
                 "decl":"mojo3d.Scene.LoadTexture",
                 "inst":"@0",
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
@@ -35,7 +35,7 @@
         },
         {
             "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/textures/m2tiles.pbr/roughness.jpg",12,false],
+                "args":["asset::m2tiles.pbr/color.jpg",12,false],
                 "decl":"mojo3d.Scene.LoadTexture",
                 "inst":"@0",
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
@@ -45,7 +45,7 @@
         },
         {
             "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/textures/m2tiles.pbr/metalness.jpg",12,false],
+                "args":["asset::m2tiles.pbr/roughness.jpg",12,false],
                 "decl":"mojo3d.Scene.LoadTexture",
                 "inst":"@0",
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
@@ -55,7 +55,7 @@
         },
         {
             "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/textures/m2tiles.pbr/normal.jpg",12,false],
+                "args":["asset::m2tiles.pbr/metalness.jpg",12,false],
                 "decl":"mojo3d.Scene.LoadTexture",
                 "inst":"@0",
                 "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
@@ -65,21 +65,19 @@
         },
         {
             "ctor":{
-                "args":[[0.9532375475512688,0.0,0.0,1.0],
-                    0.0,
-                    0.277
-                ],
-                "decl":"mojo3d.PbrMaterial.New",
-                "type":"Void(std.graphics.Color,Float,Float)"
+                "args":["asset::m2tiles.pbr/normal.jpg",12,false],
+                "decl":"mojo3d.Scene.LoadTexture",
+                "inst":"@0",
+                "type":"mojo.graphics.Texture(String,mojo.graphics.TextureFlags,Bool)"
             },
             "id":"@6",
-            "type":"mojo3d.PbrMaterial"
+            "type":"mojo.graphics.Texture"
         },
         {
             "ctor":{
-                "args":[[0.0,0.6956156183198241,0.9532375475512688,1.0],
-                    0.0,
-                    0.275
+                "args":[[0.95323755,0.00000000,0.00000000,1.00000000],
+                    0.00000000,
+                    0.27700000
                 ],
                 "decl":"mojo3d.PbrMaterial.New",
                 "type":"Void(std.graphics.Color,Float,Float)"
@@ -89,9 +87,9 @@
         },
         {
             "ctor":{
-                "args":[[0.9532375475512688,0.6956156183198241,0.0,1.0],
-                    0.0,
-                    0.118
+                "args":[[0.00000000,0.69561562,0.95323755,1.00000000],
+                    0.00000000,
+                    0.27500000
                 ],
                 "decl":"mojo3d.PbrMaterial.New",
                 "type":"Void(std.graphics.Color,Float,Float)"
@@ -101,9 +99,9 @@
         },
         {
             "ctor":{
-                "args":[[0.0,0.9532375475512688,0.0,1.0],
-                    0.0,
-                    0.3
+                "args":[[0.95323755,0.69561562,0.00000000,1.00000000],
+                    0.00000000,
+                    0.11800000
                 ],
                 "decl":"mojo3d.PbrMaterial.New",
                 "type":"Void(std.graphics.Color,Float,Float)"
@@ -113,9 +111,9 @@
         },
         {
             "ctor":{
-                "args":[[0.9532375475512688,0.9532375475512688,0.0,1.0],
-                    0.0,
-                    0.706
+                "args":[[0.00000000,0.95323755,0.00000000,1.00000000],
+                    0.00000000,
+                    0.30000000
                 ],
                 "decl":"mojo3d.PbrMaterial.New",
                 "type":"Void(std.graphics.Color,Float,Float)"
@@ -125,46 +123,49 @@
         },
         {
             "ctor":{
-                "args":[[1.0,1.0,1.0,1.0],
-                    0.0,
-                    0.975
+                "args":[[0.95323755,0.95323755,0.00000000,1.00000000],
+                    0.00000000,
+                    0.70600000
                 ],
                 "decl":"mojo3d.PbrMaterial.New",
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@11",
-            "state":{
-                "ColorTexture":"@2",
-                "MetalnessTexture":"@4",
-                "NormalTexture":"@5",
-                "RoughnessTexture":"@3"
-            },
             "type":"mojo3d.PbrMaterial"
         },
         {
             "ctor":{
-                "args":[[0.7,0.7,0.7,1.0],
-                    0.0,
-                    0.5
+                "args":[[1.00000000,1.00000000,1.00000000,1.00000000],
+                    0.00000000,
+                    0.97500000
                 ],
                 "decl":"mojo3d.PbrMaterial.New",
                 "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@12",
+            "state":{
+                "ColorTexture":"@3",
+                "MetalnessTexture":"@5",
+                "NormalTexture":"@6",
+                "RoughnessTexture":"@4"
+            },
             "type":"mojo3d.PbrMaterial"
         },
         {
             "ctor":{
-                "args":[0.5,16,16],
-                "decl":"mojo3d.Mesh.CreateSphere",
-                "type":"mojo3d.Mesh(Float,Int,Int)"
+                "args":[[0.70000000,0.70000000,0.70000000,1.00000000],
+                    0.00000000,
+                    0.50000000
+                ],
+                "decl":"mojo3d.PbrMaterial.New",
+                "type":"Void(std.graphics.Color,Float,Float)"
             },
             "id":"@13",
-            "type":"mojo3d.Mesh"
+            "type":"mojo3d.PbrMaterial"
         },
         {
             "ctor":{
-                "args":[1.0,24,32],
+                "args":[0.50000000,16,16],
                 "decl":"mojo3d.Mesh.CreateSphere",
                 "type":"mojo3d.Mesh(Float,Int,Int)"
             },
@@ -173,47 +174,34 @@
         },
         {
             "ctor":{
-                "args":[1.0,1.0,1,24],
-                "decl":"mojo3d.Mesh.CreateCone",
-                "type":"mojo3d.Mesh(Float,Float,std.geom.Axis,Int)"
+                "args":[1.00000000,24,32],
+                "decl":"mojo3d.Mesh.CreateSphere",
+                "type":"mojo3d.Mesh(Float,Int,Int)"
             },
             "id":"@15",
             "type":"mojo3d.Mesh"
         },
         {
             "ctor":{
-                "args":[1.0,0.3,32,16],
-                "decl":"mojo3d.Mesh.CreateTorus",
-                "type":"mojo3d.Mesh(Float,Float,Int,Int)"
+                "args":[1.00000000,1.00000000,1,24],
+                "decl":"mojo3d.Mesh.CreateCone",
+                "type":"mojo3d.Mesh(Float,Float,std.geom.Axis,Int)"
             },
             "id":"@16",
             "type":"mojo3d.Mesh"
         },
         {
             "ctor":{
-                "args":[[-0.5,0.0,-0.5,0.5,1.0,0.5],
-                    1,
-                    1,
-                    1
-                ],
-                "decl":"mojo3d.Mesh.CreateBox",
-                "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
+                "args":[1.00000000,0.30000000,32,16],
+                "decl":"mojo3d.Mesh.CreateTorus",
+                "type":"mojo3d.Mesh(Float,Float,Int,Int)"
             },
             "id":"@17",
             "type":"mojo3d.Mesh"
         },
         {
             "ctor":{
-                "args":[1.0,1.0,1,24],
-                "decl":"mojo3d.Mesh.CreateCylinder",
-                "type":"mojo3d.Mesh(Float,Float,std.geom.Axis,Int)"
-            },
-            "id":"@18",
-            "type":"mojo3d.Mesh"
-        },
-        {
-            "ctor":{
-                "args":[[-4.0,-8.0,-4.0,4.0,0.0,4.0],
+                "args":[[-0.50000000,0.00000000,-0.50000000,0.50000000,1.00000000,0.50000000],
                     1,
                     1,
                     1
@@ -221,12 +209,21 @@
                 "decl":"mojo3d.Mesh.CreateBox",
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
+            "id":"@18",
+            "type":"mojo3d.Mesh"
+        },
+        {
+            "ctor":{
+                "args":[1.00000000,1.00000000,1,24],
+                "decl":"mojo3d.Mesh.CreateCylinder",
+                "type":"mojo3d.Mesh(Float,Float,std.geom.Axis,Int)"
+            },
             "id":"@19",
             "type":"mojo3d.Mesh"
         },
         {
             "ctor":{
-                "args":[[-4.0,-8.0,-4.0,4.0,0.0,4.0],
+                "args":[[-4.00000000,-8.00000000,-4.00000000,4.00000000,0.00000000,4.00000000],
                     1,
                     1,
                     1
@@ -239,7 +236,7 @@
         },
         {
             "ctor":{
-                "args":[[-4.0,-8.0,-4.0,4.0,0.0,4.0],
+                "args":[[-4.00000000,-8.00000000,-4.00000000,4.00000000,0.00000000,4.00000000],
                     1,
                     1,
                     1
@@ -252,7 +249,7 @@
         },
         {
             "ctor":{
-                "args":[[-4.0,-8.0,-4.0,4.0,0.0,4.0],
+                "args":[[-4.00000000,-8.00000000,-4.00000000,4.00000000,0.00000000,4.00000000],
                     1,
                     1,
                     1
@@ -265,7 +262,7 @@
         },
         {
             "ctor":{
-                "args":[[-4.0,-8.0,-4.0,4.0,0.0,4.0],
+                "args":[[-4.00000000,-8.00000000,-4.00000000,4.00000000,0.00000000,4.00000000],
                     1,
                     1,
                     1
@@ -278,7 +275,7 @@
         },
         {
             "ctor":{
-                "args":[[-4.0,-8.0,-4.0,4.0,0.0,4.0],
+                "args":[[-4.00000000,-8.00000000,-4.00000000,4.00000000,0.00000000,4.00000000],
                     1,
                     1,
                     1
@@ -291,16 +288,7 @@
         },
         {
             "ctor":{
-                "args":[2.1,32,24],
-                "decl":"mojo3d.Mesh.CreateSphere",
-                "type":"mojo3d.Mesh(Float,Int,Int)"
-            },
-            "id":"@25",
-            "type":"mojo3d.Mesh"
-        },
-        {
-            "ctor":{
-                "args":[[-0.5,-0.5,-0.5,0.5,0.5,0.5],
+                "args":[[-4.00000000,-8.00000000,-4.00000000,4.00000000,0.00000000,4.00000000],
                     1,
                     1,
                     1
@@ -308,12 +296,21 @@
                 "decl":"mojo3d.Mesh.CreateBox",
                 "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
             },
+            "id":"@25",
+            "type":"mojo3d.Mesh"
+        },
+        {
+            "ctor":{
+                "args":[2.10000000,32,24],
+                "decl":"mojo3d.Mesh.CreateSphere",
+                "type":"mojo3d.Mesh(Float,Int,Int)"
+            },
             "id":"@26",
             "type":"mojo3d.Mesh"
         },
         {
             "ctor":{
-                "args":[[-0.5,-0.5,-0.5,0.5,0.5,0.5],
+                "args":[[-0.50000000,-0.50000000,-0.50000000,0.50000000,0.50000000,0.50000000],
                     1,
                     1,
                     1
@@ -326,17 +323,30 @@
         },
         {
             "ctor":{
+                "args":[[-0.50000000,-0.50000000,-0.50000000,0.50000000,0.50000000,0.50000000],
+                    1,
+                    1,
+                    1
+                ],
+                "decl":"mojo3d.Mesh.CreateBox",
+                "type":"mojo3d.Mesh(std.geom.Box<monkey.types.Float>,Int,Int,Int)"
+            },
+            "id":"@28",
+            "type":"mojo3d.Mesh"
+        },
+        {
+            "ctor":{
                 "args":[null],
                 "decl":"mojo3d.Camera.New",
                 "type":"Void(mojo3d.Entity)"
             },
-            "id":"@28",
+            "id":"@29",
             "state":{
-                "FOV":36.82009835741053,
-                "Far":100.0,
-                "LocalMatrix":[0.9998266349656975,4.813327970958797e-06,-0.018619881578621673,0.009865404077682955,0.8479658295034712,0.5299590793607315,0.01579157419493248,-0.5300508956424108,0.8478187743929265,2.272690057270648,12.541112607510303,-25.7237981311179],
+                "FOV":36.82009836,
+                "Far":100.00000000,
+                "LocalMatrix":[0.99999999,0.00000481,0.00016285,-0.00005782,0.94498260,0.32712059,-0.00015232,-0.32712059,0.94498259,5.95980602,10.95761201,-36.39369237],
                 "Name":"Camera",
-                "Near":0.1
+                "Near":0.10000000
             },
             "type":"mojo3d.Camera"
         },
@@ -346,15 +356,15 @@
                 "decl":"mojo3d.Light.New",
                 "type":"Void(mojo3d.Entity)"
             },
-            "id":"@29",
+            "id":"@30",
             "state":{
                 "CastsShadow":1,
-                "Color":[0.7297400528407231,0.7297400528407231,0.7297400528407231,1.0],
-                "InnerAngle":0.5,
-                "LocalMatrix":[-0.07149744433268586,0.0,0.997440782930944,-0.9305659042145275,0.3599968081200512,-0.0667037934211679,-0.35907549814390466,-0.932953534825489,-0.025738851748507954,7.532963395118713,6.220186829566956,-1.057381510734558],
+                "Color":[0.72974005,0.72974005,0.72974005,1.00000000],
+                "InnerAngle":0.50000000,
+                "LocalMatrix":[-0.07149744,0.00000000,0.99744078,-0.93056590,0.35999681,-0.06670379,-0.35907550,-0.93295353,-0.02573885,7.53296340,6.22018683,-1.05738151],
                 "Name":"KeyLight",
-                "OuterAngle":30.5,
-                "Range":10000.0,
+                "OuterAngle":30.50000000,
+                "Range":100000.00000000,
                 "Type":1
             },
             "type":"mojo3d.Light"
@@ -365,88 +375,88 @@
                 "decl":"mojo3d.Pivot.New",
                 "type":"Void(mojo3d.Entity)"
             },
-            "id":"@30",
+            "id":"@31",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,-5.0,0.0,5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,-5.00000000,0.00000000,5.00000000],
                 "Name":"Primitives"
             },
             "type":"mojo3d.Pivot"
         },
         {
             "ctor":{
-                "args":["@13","@6","@30"],
+                "args":["@14","@7","@31"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@31",
+            "id":"@32",
             "state":{
-                "Color":[0.0,0.0,0.9532375475512688,1.0],
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,-3.1702435095622787,0.5426174402236796,-2.205567058909079],
+                "Color":[0.00000000,0.00000000,0.95323755,1.00000000],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,-3.17024351,0.54261744,-2.20556706],
                 "Name":"BlackBall"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@14","@6","@30"],
+                "args":["@15","@7","@31"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@32",
+            "id":"@33",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,-1.3082222449884577,0.9853402376174927,2.546030712185887],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,-1.30822224,0.98534024,2.54603071],
                 "Name":"Ball"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@15","@7","@30"],
+                "args":["@16","@8","@31"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@33",
+            "id":"@34",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,-1.0016392802811875,0.5431317090988159,-0.12050223180219932],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,-1.00163928,0.54313171,-0.12050223],
                 "Name":"Cone"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@16","@8","@30"],
+                "args":["@17","@9","@31"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@34",
+            "id":"@35",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,1.2391308873127347,0.1531379222869873,-0.6575886410080889],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,1.23913089,0.15313792,-0.65758864],
                 "Name":"Donut"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@17","@9","@30"],
+                "args":["@18","@10","@31"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@35",
+            "id":"@36",
             "state":{
-                "LocalMatrix":[0.7071067811865477,0.0,0.7071067811865475,0.0,1.0,0.0,-0.7071067811865475,0.0,0.7071067811865477,-0.7219634202404714,0.0,-2.76437288247606],
+                "LocalMatrix":[0.70710678,0.00000000,0.70710678,0.00000000,1.00000000,0.00000000,-0.70710678,0.00000000,0.70710678,-0.72196342,0.00000000,-2.76437288],
                 "Name":"Box"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@18","@10","@30"],
+                "args":["@19","@11","@31"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@36",
+            "id":"@37",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,1.5329009444630541,0.5342789888381958,2.448541144309809],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,1.53290094,0.53427899,2.44854114],
                 "Name":"Cylinder"
             },
             "type":"mojo3d.Model"
@@ -457,87 +467,87 @@
                 "decl":"mojo3d.Pivot.New",
                 "type":"Void(mojo3d.Entity)"
             },
-            "id":"@37",
+            "id":"@38",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000],
                 "Name":"BigCubes"
             },
             "type":"mojo3d.Pivot"
         },
         {
             "ctor":{
-                "args":["@19","@11","@37"],
+                "args":["@20","@12","@38"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@38",
+            "id":"@39",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,-5.0,0.0,-5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,-5.00000000,0.00000000,-5.00000000],
                 "Name":"cube2"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@20","@11","@37"],
+                "args":["@21","@12","@38"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@39",
+            "id":"@40",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,-5.0,0.0,5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,-5.00000000,0.00000000,5.00000000],
                 "Name":"cube1"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@21","@11","@37"],
+                "args":["@22","@12","@38"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@40",
+            "id":"@41",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,5.0,0.0,-5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,5.00000000,0.00000000,-5.00000000],
                 "Name":"cube3"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@22","@11","@37"],
+                "args":["@23","@12","@38"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@41",
+            "id":"@42",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,5.0,0.0,5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,5.00000000,0.00000000,5.00000000],
                 "Name":"cube4"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@23","@11","@37"],
+                "args":["@24","@12","@38"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@42",
+            "id":"@43",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,15.0,0.0,-5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,15.00000000,0.00000000,-5.00000000],
                 "Name":"cube5"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@24","@11","@37"],
+                "args":["@25","@12","@38"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@43",
+            "id":"@44",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,15.0,0.0,5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,15.00000000,0.00000000,5.00000000],
                 "Name":"cube6"
             },
             "type":"mojo3d.Model"
@@ -548,36 +558,23 @@
                 "decl":"mojo3d.Pivot.New",
                 "type":"Void(mojo3d.Entity)"
             },
-            "id":"@44",
+            "id":"@45",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,5.0,0.0,5.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,5.00000000,0.00000000,5.00000000],
                 "Name":"Loaders"
             },
             "type":"mojo3d.Pivot"
         },
         {
             "ctor":{
-                "args":["@44"],
-                "decl":"mojo3d.Pivot.New",
-                "type":"Void(mojo3d.Entity)"
-            },
-            "id":"@45",
-            "state":{
-                "LocalMatrix":[0.5870790675255892,-4.290856161212327e-18,0.8095295970335394,2.5190718340109626e-18,1.0,3.473575059115094e-18,-0.8095295970335394,1.5407439555097887e-33,0.5870790675255892,-2.9962744366788634,0.13166402467854255,-0.7809776914366644],
-                "Name":"blocknet"
-            },
-            "type":"mojo3d.Pivot"
-        },
-        {
-            "ctor":{
-                "args":[null],
+                "args":["@45"],
                 "decl":"mojo3d.Pivot.New",
                 "type":"Void(mojo3d.Entity)"
             },
             "id":"@46",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,5.0,0.0,-5.0],
-                "Name":"Savers"
+                "LocalMatrix":[0.58707907,-0.00000000,0.80952960,0.00000000,1.00000000,0.00000000,-0.80952960,0.00000000,0.58707907,-2.99627444,0.13166402,-0.78097769],
+                "Name":"blocknet"
             },
             "type":"mojo3d.Pivot"
         },
@@ -589,133 +586,88 @@
             },
             "id":"@47",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,5.00000000,0.00000000,-5.00000000],
+                "Name":"Savers"
+            },
+            "type":"mojo3d.Pivot"
+        },
+        {
+            "ctor":{
+                "args":[null],
+                "decl":"mojo3d.Pivot.New",
+                "type":"Void(mojo3d.Entity)"
+            },
+            "id":"@48",
+            "state":{
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000],
                 "Name":"NoMaterial"
             },
             "type":"mojo3d.Pivot"
         },
         {
             "ctor":{
-                "args":["@25","@12","@47"],
+                "args":["@26","@13","@48"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@48",
+            "id":"@49",
             "state":{
-                "LocalMatrix":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,14.848975130779497,2.0922017693519592,4.758246044323382],
+                "LocalMatrix":[1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,14.84897513,2.09220177,4.75824604],
                 "Name":"sphere1"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@26","@12","@47"],
+                "args":["@27","@13","@48"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@49",
+            "id":"@50",
             "state":{
-                "LocalMatrix":[0.8301006437827422,0.018113793215699645,0.5573193085537372,0.01151187770110006,0.9987025255397973,-0.049605868122888745,-0.5574947514221741,0.04759365478474403,0.8288150856258342,13.073119735652737,0.48337388038635254,3.0081836177681787],
+                "LocalMatrix":[0.83010064,0.01811379,0.55731931,0.01151188,0.99870253,-0.04960587,-0.55749475,0.04759365,0.82881509,13.07311974,0.48337388,3.00818362],
                 "Name":"box1"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@27","@12","@47"],
+                "args":["@28","@13","@48"],
                 "decl":"mojo3d.Model.New",
                 "type":"Void(mojo3d.Mesh,mojo3d.Material,mojo3d.Entity)"
             },
-            "id":"@50",
+            "id":"@51",
             "state":{
-                "LocalMatrix":[1.0658237512706408,-0.04688787532612063,-0.696639493219379,0.014667981407795093,1.2725074446487559,-0.06320584445355439,0.6980615350289482,0.04485148380007623,1.0649806396607082,16.95110769464887,0.6611899808632825,2.9052093282367824],
+                "LocalMatrix":[1.06582375,-0.04688788,-0.69663949,0.01466798,1.27250744,-0.06320584,0.69806154,0.04485148,1.06498064,16.95110769,0.66118998,2.90520933],
                 "Name":"box2"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/models/monkey.glb"],
-                "decl":"mojo3d.Model.Load",
+                "args":["asset::monkey.glb"],
+                "decl":"mojo3d.Model.LoadBoned",
                 "type":"mojo3d.Model(String)"
             },
-            "id":"@51",
+            "id":"@52",
             "state":{
-                "LocalMatrix":[3.950071343671652,0.03216076337014387,-0.6292074897865665,-0.021026788870409943,3.999289213611006,0.07241312066505656,0.6296778970663186,-0.06820169495036364,3.9495384888303144,-1.5605809868877212,-0.022795134416627044,1.0426996668888238],
+                "LocalMatrix":[3.95007134,0.03216076,-0.62920749,-0.02102679,3.99928921,0.07241312,0.62967790,-0.06820169,3.94953849,-1.56058099,-0.02279513,1.04269967],
                 "Name":"monkey",
-                "Parent":"@44"
+                "Parent":"@45"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@44"],
+                "args":["@45"],
                 "decl":"mojo3d.Entity.Copy",
-                "inst":"@51",
-                "type":"mojo3d.Entity(mojo3d.Entity)"
-            },
-            "id":"@52",
-            "state":{
-                "LocalMatrix":[3.5245908925284173,-0.015713801828222067,1.891299055342086,-0.021026788870409884,3.9992892136110068,0.07241312066505658,-1.8912474492925442,-0.0737486428807758,3.5238819820217704,-2.1409003869779366,0.03670253197247587,-2.411793369500186],
-                "Name":"monkey1"
-            },
-            "type":"mojo3d.Entity"
-        },
-        {
-            "ctor":{
-                "args":["@44"],
-                "decl":"mojo3d.Entity.Copy",
-                "inst":"@51",
+                "inst":"@52",
                 "type":"mojo3d.Entity(mojo3d.Entity)"
             },
             "id":"@53",
             "state":{
-                "LocalMatrix":[3.2234688490765766,0.059817293131976965,-2.3676297156598034,-0.021026788870409922,3.999289213611008,0.07241312066505656,2.368291885132141,-0.04590944714343641,3.2232104910291293,1.8511994060311738,0.046477871720019624,-1.7924766815549518],
-                "Name":"monkey2"
-            },
-            "type":"mojo3d.Entity"
-        },
-        {
-            "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/models/block.glb"],
-                "decl":"mojo3d.Model.Load",
-                "type":"mojo3d.Model(String)"
-            },
-            "id":"@54",
-            "state":{
-                "LocalMatrix":[2.4491718362452644,0.0,0.0,0.0,2.4491718362452644,0.0,0.0,0.0,2.4491718362452644,-0.207019225025052,0.5074324702373555,-0.7132521579982298],
-                "Materials":["@9"],
-                "Name":"block1",
-                "Parent":"@44"
-            },
-            "type":"mojo3d.Model"
-        },
-        {
-            "ctor":{
-                "args":["@44"],
-                "decl":"mojo3d.Entity.Copy",
-                "inst":"@54",
-                "type":"mojo3d.Entity(mojo3d.Entity)"
-            },
-            "id":"@55",
-            "state":{
-                "LocalMatrix":[1.29268880828984,0.0,1.5587993509667788,0.0,2.0250678437159233,0.0,-1.5587993509667788,0.0,1.29268880828984,1.1456398630171944,0.41956434543619414,1.038298824650036],
-                "Materials":["@7"],
-                "Name":"block2"
-            },
-            "type":"mojo3d.Entity"
-        },
-        {
-            "ctor":{
-                "args":["@44"],
-                "decl":"mojo3d.Entity.Copy",
-                "inst":"@54",
-                "type":"mojo3d.Entity(mojo3d.Entity)"
-            },
-            "id":"@56",
-            "state":{
-                "LocalMatrix":[1.1404040589415068,3.7484236968796796e-17,-1.1028315328253535,-2.6945523813777165e-17,1.5864295784698987,2.6057758298327953e-17,1.1028315328253537,6.162975822039155e-33,1.140404058941507,-0.29539046734973057,0.3286849325748872,-3.0145894357117444],
-                "Name":"block3"
+                "LocalMatrix":[3.52459089,-0.01571380,1.89129906,-0.02102679,3.99928921,0.07241312,-1.89124745,-0.07374864,3.52388198,-2.14090039,0.03670253,-2.41179337],
+                "Name":"monkey1"
             },
             "type":"mojo3d.Entity"
         },
@@ -723,42 +675,100 @@
             "ctor":{
                 "args":["@45"],
                 "decl":"mojo3d.Entity.Copy",
-                "inst":"@54",
+                "inst":"@52",
+                "type":"mojo3d.Entity(mojo3d.Entity)"
+            },
+            "id":"@54",
+            "state":{
+                "LocalMatrix":[3.22346885,0.05981729,-2.36762972,-0.02102679,3.99928921,0.07241312,2.36829189,-0.04590945,3.22321049,1.85119941,0.04647787,-1.79247668],
+                "Name":"monkey2"
+            },
+            "type":"mojo3d.Entity"
+        },
+        {
+            "ctor":{
+                "args":["asset::block.glb"],
+                "decl":"mojo3d.Model.LoadBoned",
+                "type":"mojo3d.Model(String)"
+            },
+            "id":"@55",
+            "state":{
+                "LocalMatrix":[2.44917184,0.00000000,0.00000000,0.00000000,2.44917184,0.00000000,0.00000000,0.00000000,2.44917184,-0.20701923,0.50743247,-0.71325216],
+                "Materials":["@10"],
+                "Name":"block1",
+                "Parent":"@45"
+            },
+            "type":"mojo3d.Model"
+        },
+        {
+            "ctor":{
+                "args":["@45"],
+                "decl":"mojo3d.Entity.Copy",
+                "inst":"@55",
+                "type":"mojo3d.Entity(mojo3d.Entity)"
+            },
+            "id":"@56",
+            "state":{
+                "LocalMatrix":[1.29268881,0.00000000,1.55879935,0.00000000,2.02506784,0.00000000,-1.55879935,0.00000000,1.29268881,1.14563986,0.41956435,1.03829882],
+                "Materials":["@8"],
+                "Name":"block2"
+            },
+            "type":"mojo3d.Entity"
+        },
+        {
+            "ctor":{
+                "args":["@45"],
+                "decl":"mojo3d.Entity.Copy",
+                "inst":"@55",
                 "type":"mojo3d.Entity(mojo3d.Entity)"
             },
             "id":"@57",
             "state":{
-                "LocalMatrix":[2.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,2.0,0.0,0.41437065601348877,0.0],
+                "LocalMatrix":[1.14040406,0.00000000,-1.10283153,-0.00000000,1.58642958,0.00000000,1.10283153,0.00000000,1.14040406,-0.29539047,0.32868493,-3.01458944],
+                "Name":"block3"
+            },
+            "type":"mojo3d.Entity"
+        },
+        {
+            "ctor":{
+                "args":["@46"],
+                "decl":"mojo3d.Entity.Copy",
+                "inst":"@55",
+                "type":"mojo3d.Entity(mojo3d.Entity)"
+            },
+            "id":"@58",
+            "state":{
+                "LocalMatrix":[2.00000000,0.00000000,0.00000000,0.00000000,2.00000000,0.00000000,0.00000000,0.00000000,2.00000000,0.00000000,0.41437066,0.00000000],
                 "Name":"block"
             },
             "type":"mojo3d.Entity"
         },
         {
             "ctor":{
-                "args":["/Users/leo/GoogleDrive/Code/Monkey2/mojogame/_dev/exporter/examples/models/bumpybox.obj"],
+                "args":["asset::bumpybox.obj"],
                 "decl":"mojo3d.Model.Load",
                 "type":"mojo3d.Model(String)"
             },
-            "id":"@58",
+            "id":"@59",
             "state":{
-                "LocalMatrix":[2.6,0.0,0.0,0.0,2.6,0.0,0.0,0.0,2.6,-0.0079803466796875,1.3,-0.009248733520507812],
-                "Materials":["@8"],
+                "LocalMatrix":[2.60000000,0.00000000,0.00000000,0.00000000,2.60000000,0.00000000,0.00000000,0.00000000,2.60000000,-0.00798035,1.30000000,-0.00924873],
+                "Materials":["@9"],
                 "Name":"bumpybox1",
-                "Parent":"@46"
+                "Parent":"@47"
             },
             "type":"mojo3d.Model"
         },
         {
             "ctor":{
-                "args":["@46"],
+                "args":["@47"],
                 "decl":"mojo3d.Entity.Copy",
-                "inst":"@58",
+                "inst":"@59",
                 "type":"mojo3d.Entity(mojo3d.Entity)"
             },
-            "id":"@59",
+            "id":"@60",
             "state":{
-                "LocalMatrix":[1.2,0.0,0.0,0.0,1.2,0.0,0.0,0.0,1.2,-10.493213176727295,0.6,0.0],
-                "Materials":["@6"],
+                "LocalMatrix":[1.20000000,0.00000000,0.00000000,0.00000000,1.20000000,0.00000000,0.00000000,0.00000000,1.20000000,-10.49321318,0.60000000,0.00000000],
+                "Materials":["@7"],
                 "Name":"bumpybox2"
             },
             "type":"mojo3d.Entity"

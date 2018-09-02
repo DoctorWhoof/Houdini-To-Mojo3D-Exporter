@@ -1,6 +1,5 @@
 'Houdini scene to mojo3d demostration
 'Try changing the scene in houdini, re-export it and hit space bar in this app. The changes will reload, without the need to recompile!
-'Make sure there's always a camera named "Camera", or you'll get a crash
 
 Namespace myapp3d
 
@@ -8,34 +7,39 @@ Namespace myapp3d
 #Import "<mojo>"
 #Import "<mojo3d>"
 #Import "<mojo3d-loaders>"
+#Import "source/mojomesh"
 
 #Import "models/"
 #Import "textures/"
 #Import "scenes/"
+#Import "scenes/meshes/"
 
 #Reflect mojo3d
+#Reflect mojogame
 
 Using std..
 Using mojo..
 Using mojo3d..
-
+Using mojogame..
 
 Class MyWindow Extends Window
 	
-	'in oder to try hot-reloading, point this to your absolute local path, i.e. "/pathtofile/scenes/testscene.mojo3d"
-	Field _path := "asset::testscene.mojo3d"
+	Const flags := WindowFlags.Resizable' | WindowFlags.HighDPI
 	
+	'in oder to try hot-reloading, point this to your absolute local path, i.e. "/pathtofile/scenes/testscene.mojo3d"
+	Field path := "asset::basicscene.mojo3d" 
 	Field _scene:Scene
 	Field _camera:Camera
-
 	
-	Method New( title:String="Simple mojo3d loader",width:Int=1280,height:Int=720,flags:WindowFlags=WindowFlags.Resizable | WindowFlags.HighDPI )
+
+	Method New( title:String="Simple mojo3d loader",width:Int=1280,height:Int=720 )
 		Super.New( title,width,height,flags )
 	End
 	
 	
 	Method OnCreateWindow() Override
 		ReloadScene()
+		_scene.AddPostEffect( New FXAAEffect )
 	End
 	
 	
@@ -51,8 +55,8 @@ Class MyWindow Extends Window
 	
 	
 	Method ReloadScene()
-		_scene = _scene.Load( _path )
-		_camera = Cast<Camera>(_scene.FindEntity("Camera") )
+		_scene = _scene.Load( path )
+		_camera = FindCamera( _scene.GetRootEntities() )
 		_camera.View = Self
 		_camera.AddComponent<FlyBehaviour>()
 		Print "Scene reloaded"
@@ -60,8 +64,62 @@ Class MyWindow Extends Window
 	
 End
 
+
 Function Main()
 	New AppInstance
 	New MyWindow
 	App.Run()
 End
+
+
+
+Function FindCamera:Camera( entities:Entity[] )
+	Local cam:Camera
+	For Local e:= Eachin entities
+		Local candidate := Cast<Camera>( e )
+		If candidate
+			Print "Scene: Camera named '" + candidate.Name + "' Found"
+			Return candidate
+		Else
+			cam = FindCamera( e.Children )
+		End
+	Next
+	Return cam
+End
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
